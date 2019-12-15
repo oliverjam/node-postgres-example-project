@@ -11,6 +11,10 @@ body {
   background-color: hsl(220, 10%, 98%);
 }
 
+h2 {
+  margin-top: 3rem;
+}
+
 label,
 input,
 textarea,
@@ -33,10 +37,14 @@ textarea {
   padding: 0.5rem;
 }
 
+textarea {
+  resize: vertical;
+}
+
 button {
   border: 0;
   padding: 0.5rem 0.75rem;
-  background: hsl(220, 50%, 85%);
+  background: hsl(220, 40%, 85%);
 }
 
 .posts {
