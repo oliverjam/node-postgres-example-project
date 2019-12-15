@@ -1,6 +1,6 @@
-const missing = require("./views/missing");
 const handleHome = require("./handlers/home");
 const handleSubmit = require("./handlers/submit");
+const handleMissing = require("./handlers/missing");
 
 function router(request, response) {
   switch (request.url) {
@@ -11,8 +11,7 @@ function router(request, response) {
       handleSubmit(request, response);
       break;
     default:
-      response.statusCode = 404;
-      response.end(missing());
+      handleMissing(request, response);
   }
 }
 
