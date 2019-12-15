@@ -1,13 +1,16 @@
 const qs = require("querystring");
 const fs = require("fs");
+const errorView = require("../views/error");
 
 function handleSubmit(request, response) {
   let data = "";
   request.on("data", chunk => (data += chunk));
-  request.on("end", error => {
-    if (error) {
-      response.statusCode = 500;
-      response.end(`<h1>Oops</h1>`);
+  request.on("end", submitError => {
+    if (submitError) {
+      console.log(submitError);
+      const html = errorView("Error receiving form data");
+      response.writeHead(500, { "content-type": "text/htm;" });
+      response.end(html);
     }
     const newPost = qs.parse(data);
     fs.readFile(
@@ -16,8 +19,9 @@ function handleSubmit(request, response) {
       (readError, postsData) => {
         if (readError) {
           console.log(readError);
-          response.statusCode = 500;
-          response.end(`<h1>Oops</h1>`);
+          const html = errorView("Error reading posts data");
+          response.writeHead(500, { "content-type": "text/htm;" });
+          response.end(html);
         }
         const posts = JSON.parse(postsData);
         posts.push(newPost);
@@ -27,6 +31,9 @@ function handleSubmit(request, response) {
           writeError => {
             if (writeError) {
               console.log(writeError);
+              const html = errorView("Error saving post data");
+              response.writeHead(500, { "content-type": "text/htm;" });
+              response.end(html);
             }
             response.writeHead(302, { Location: "/" });
             response.end();
