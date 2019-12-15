@@ -1,15 +1,29 @@
-const html = require("../html");
+const html = require("../pageTemplate");
 
-function home() {
+function homeView(posts) {
   return html(`
   <h1>Blogr</h1>
   <form action="/submit" method="POST">
     <label for="author">Your name</label>
     <input id="author" name="author" />
-    <label for="post">Post</label>
-    <textarea id="post" name="post"></textarea>
+    <label for="title">Post title</label>
+    <input id="title" name="title" />
+    <label for="body">Post</label>
+    <textarea id="body" name="body"></textarea>
+    <button>Submit</button>
   </form>
+  <h2>Posts</h2>
+  <ul>
+  ${posts
+    .map(
+      post => `<li>
+  <h3>${post.title}</h3>
+  <p>${post.author}</p>
+  </li>`
+    )
+    .join("")}
+  </ul>
 `);
 }
 
-module.exports = home;
+module.exports = homeView;
