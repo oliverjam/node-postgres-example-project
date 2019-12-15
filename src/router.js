@@ -1,12 +1,11 @@
-const home = require("./views/home");
 const missing = require("./views/missing");
+const handleHome = require("./handlers/home");
 const handleSubmit = require("./handlers/submit");
 
 function router(request, response) {
   switch (request.url) {
     case "/":
-      response.statusCode = 200;
-      response.end(home());
+      handleHome(request, response);
       break;
     case "/submit":
       handleSubmit(request, response);
