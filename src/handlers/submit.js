@@ -1,4 +1,5 @@
 const qs = require("querystring");
+const path = require("path");
 const fs = require("fs");
 const errorView = require("../views/error");
 
@@ -23,7 +24,8 @@ function handleSubmit(request, response) {
     const newPost = qs.parse(body);
 
     // read the file where posts are stored
-    fs.readFile(__dirname + "/../posts.json", "utf-8", (readError, file) => {
+    const postsPath = path.join(__dirname, "../posts.json");
+    fs.readFile(postsPath, "utf-8", (readError, file) => {
       // if we fail to read the file respond with an error
       if (readError) {
         console.log(readError);
@@ -39,23 +41,19 @@ function handleSubmit(request, response) {
       posts.push(newPost);
 
       // overwrite the old posts file with the updated posts
-      fs.writeFile(
-        __dirname + "/../posts.json",
-        JSON.stringify(posts),
-        writeError => {
-          // if we fail to save the posts respond with an error
-          if (writeError) {
-            console.log(writeError);
-            const html = errorView("Error saving post data");
-            response.writeHead(500, { "content-type": "text/html" });
-            response.end(html);
-          }
-
-          // if everything was successful redirect to homepage
-          response.writeHead(302, { Location: "/" });
-          response.end();
+      fs.writeFile(postsPath, JSON.stringify(posts), writeError => {
+        // if we fail to save the posts respond with an error
+        if (writeError) {
+          console.log(writeError);
+          const html = errorView("Error saving post data");
+          response.writeHead(500, { "content-type": "text/html" });
+          response.end(html);
         }
-      );
+
+        // if everything was successful redirect to homepage
+        response.writeHead(302, { Location: "/" });
+        response.end();
+      });
     });
   });
 }

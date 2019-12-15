@@ -1,9 +1,11 @@
+const path = require("path");
 const fs = require("fs");
 const homeView = require("../views/home");
 const errorView = require("../views/error");
 
 function handleHome(request, response) {
-  fs.readFile(__dirname + "/../posts.json", "utf-8", (error, data) => {
+  const postsPath = path.join(__dirname, "../posts.json");
+  fs.readFile(postsPath, "utf-8", (error, data) => {
     // if we fail to read the posts respond with an error page
     if (error) {
       console.log(error);

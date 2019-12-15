@@ -1,10 +1,11 @@
 const { createServer } = require("http");
+const path = require("path");
 const fs = require("fs");
 const router = require("./router.js");
 
-const postsFile = __dirname + "/posts.json";
-if (!fs.existsSync(postsFile)) {
-  fs.writeFileSync(postsFile, "[]");
+const postsPath = path.join(__dirname, "posts.json");
+if (!fs.existsSync(postsPath)) {
+  fs.writeFileSync(postsPath, "[]");
 }
 
 const server = createServer(router);
