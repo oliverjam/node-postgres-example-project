@@ -37,8 +37,9 @@ function handleSubmit(request, response) {
       // turn the file contents (string) into JSON (array)
       const posts = JSON.parse(file);
 
-      // put the newly submitted post into the array
-      posts.push(newPost);
+      // put the newly submitted post into the start of the array
+      // so they display newest-first
+      posts.unshift(newPost);
 
       // overwrite the old posts file with the updated posts
       fs.writeFile(postsPath, JSON.stringify(posts), writeError => {
