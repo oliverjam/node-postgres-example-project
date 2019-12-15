@@ -19,7 +19,7 @@ function homeView(posts) {
     .map(
       post => `<li>
       <h3>${post.title}</h3>
-      <p>${post.author}</p>
+      <p>by ${post.author}</p>
       </li>`
     )
     .join("")}
