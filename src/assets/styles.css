@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 30rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: hsl(220, 10%, 25%);
+  background-color: hsl(220, 10%, 98%);
+}
+
+label,
+input,
+textarea,
+button {
+  display: block;
+  font: inherit;
+  color: inherit;
+}
+
+label,
+button {
+  margin-top: 1rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  border: 1px solid hsl(220, 10%, 85%);
+  padding: 0.5rem;
+}
+
+button {
+  border: 0;
+  padding: 0.5rem 0.75rem;
+  background: hsl(220, 50%, 85%);
+}
+
+.posts {
+  padding: 0;
+  list-style: none;
+}
+
+.posts li {
+  border: 1px solid hsl(220, 10%, 85%);
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.posts li + li {
+  border-top: 0;
+}
+
+.posts h3 {
+  margin: 0;
+}
