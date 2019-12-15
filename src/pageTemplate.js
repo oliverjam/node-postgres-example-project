@@ -1,4 +1,4 @@
-function html(body) {
+function pageTemplate(body) {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -14,4 +14,4 @@ function html(body) {
   `;
 }
 
-module.exports = html;
+module.exports = pageTemplate;
