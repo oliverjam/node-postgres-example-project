@@ -16,7 +16,7 @@ function handleSubmit(request, response) {
     if (submitError) {
       console.log(submitError);
       const html = errorView("Error receiving form data");
-      response.writeHead(500, { "content-type": "text/htm;" });
+      response.writeHead(500, { "content-type": "text/html" });
       response.end(html);
     }
 
@@ -30,7 +30,7 @@ function handleSubmit(request, response) {
       if (readError) {
         console.log(readError);
         const html = errorView("Error reading posts data");
-        response.writeHead(500, { "content-type": "text/htm;" });
+        response.writeHead(500, { "content-type": "text/html" });
         response.end(html);
       }
 
